@@ -20,9 +20,16 @@ function getset () {
 }
 async function cities(req, res) {
     try {
+        rand = random.int((min = 1), (max = 50))
         set_cites = await getset();
         res.writeHead(200, {"Content-Type": "application/json"});
-        res.end(JSON.stringify({'city' : set_cites[rand][0] + ' (' + set_cites[rand][3] + ')', 'lat' : set_cites[rand][1], 'long' : set_cites[rand][2]}));
+        res.end(JSON.stringify(
+            {
+                'city' : set_cites[rand][0] + ' (' + set_cites[rand][3] + ')',
+                'lat' : set_cites[rand][1],
+                'long' : set_cites[rand][2]
+            }
+        ));
     } catch (error) {
         console.error("testGetSet: An error occurred: ", error.message);
     }
